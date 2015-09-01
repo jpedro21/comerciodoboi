@@ -1,0 +1,18 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="lista-leilao">
+    <h2> Leilões criados por você</h2>
+    <div class="content">
+        <a href="<?php echo Mage::getBaseUrl() . 'leilao/evento/criarEvento' ?>">Criar Leilão</a>
+    </div>
+</div>
+
+
+
+<?php
+
+$teste = $this->getLeiloeiroEventos();
+
+foreach($teste as $value) {
+    $value = $value;
+}

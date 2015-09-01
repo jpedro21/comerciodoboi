@@ -1,0 +1,25 @@
+<?php
+/**
+ * Octagono Ecommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.octagonoecommerce.com.br/eula-licenca-usuario-final.html
+ *
+ *
+ * @category   Cliente
+ * @package    Octagono_Cliente
+ * @copyright  Copyright (c) 2009-2011 - Octagono Ecommerce - www.octagonoecommerce.com.br
+ * @license    http://www.octagonoecommerce.com.br/eula-licenca-usuario-final.html
+ */
+?>
+<div class="field tipo">
+	<div class="input-box">
+		<input type="radio" name="<?php echo $this->getFieldName('tipo')?>" value="1" id="pf" class="radio" <?php if($this->getTipo() != 2): ?>checked<?php endif ?> /> <label for="pf"><?php echo $this->__('Pessoa física') ?></label>
+		<input type="radio" name="<?php echo $this->getFieldName('tipo')?>" value="2" id="pj" class="radio" <?php if($this->getTipo() == 2): ?>checked<?php endif ?> /> <label for="pj"><?php echo $this->__('Pessoa jurídica') ?></label>
+	</div>
+</div>
+

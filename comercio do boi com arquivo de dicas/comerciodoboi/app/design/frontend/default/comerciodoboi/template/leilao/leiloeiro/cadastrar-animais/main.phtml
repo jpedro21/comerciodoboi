@@ -1,0 +1,13 @@
+
+<div class="cadastro-animal">
+    <h2> Tela Cadastro de Animal</h2>
+    <form action="<?php echo $this->getUrlFormSaveAnimal() ?>" id="form-validate" method="post">
+        <?php echo $this->getChildHtml('leilao_leiloeiro_cadastraranimais_passo1') ?>
+        <?php echo $this->getChildHtml('leilao_leiloeiro_cadastraranimais_passo2') ?>
+    </form>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+ </script>

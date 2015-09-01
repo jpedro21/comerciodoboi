@@ -1,0 +1,81 @@
+<layout version="0.1.0">
+    <customer_account>
+        <!-- Mage_Wishlist -->
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="leilao" ><label>Cadastrar Animais</label><url helper="leilao/getUrlAddProduct"/><title>Cadastrar Animais</title><prepare/><urlParams/><position>10</position></action>
+            <action method="addLink" translate="label" module="leilao" ><label>Criar Leilão</label><url helper="leilao/getUrlAddEvento"/><title>Criar Leilão</title><prepare/><urlParams/><position>10</position></action>
+        </reference>
+    </customer_account>
+    
+    <leilao_leiloeiro_mudarperfil>
+        <!--<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>-->
+        <reference name="content">
+            <block type="leilao/leiloeiro" name="leilao_leiloeiro_mudarperfil" template="leilao/leiloeiro/mudar-perfil.phtml"/>
+        </reference>
+    </leilao_leiloeiro_mudarperfil>
+    
+    <leilao_leiloeiro_cadastraranimais>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <block type="customer/account_navigation" name="customer_account_navigation" before="-" template="customer/account/navigation.phtml">
+                <action method="addLink" translate="label" module="customer"><name>account</name><path>customer/account/</path><label>Account Dashboard</label></action>
+                <action method="addLink" translate="label" module="customer"><name>account_edit</name><path>customer/account/edit/</path><label>Account Information</label></action>
+                <action method="addLink" translate="label" module="customer"><name>address_book</name><path>customer/address/</path><label>Address Book</label></action>
+                <action method="addLink" translate="label" module="leilao" ><label>Cadastrar Animais</label><url helper="leilao/getUrlAddProduct"/><title>Cadastrar Animais</title><prepare/><urlParams/><position>10</position></action>
+                <action method="addLink" translate="label" module="leilao" ><label>Criar Leilão</label><url helper="leilao/getUrlAddEvento"/><title>Criar Leilão</title><prepare/><urlParams/><position>10</position></action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="leilao/leiloeiro" name="leilao_leiloeiro_cadastraranimais_main" template="leilao/leiloeiro/cadastrar-animais/main.phtml">
+                <block type="leilao/leiloeiro" name="leilao_leiloeiro_cadastraranimais_passo1" as="leilao_leiloeiro_cadastraranimais_passo1" template="leilao/leiloeiro/cadastrar-animais/passo1.phtml"/>
+                <block type="leilao/leiloeiro" name="leilao_leiloeiro_cadastraranimais_passo2" as="leilao_leiloeiro_cadastraranimais_passo2" template="leilao/leiloeiro/cadastrar-animais/passo2.phtml"/>
+            </block>
+        </reference>
+    </leilao_leiloeiro_cadastraranimais>
+    
+    <leilao_evento_criarevento>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>calendar/calendar.js</script></action>
+            <action method="addJs"><script>calendar/calendar-setup.js</script></action>
+        </reference>
+        <reference name="left">
+            <block type="customer/account_navigation" name="customer_account_navigation" before="-" template="customer/account/navigation.phtml">
+                <action method="addLink" translate="label" module="customer"><name>account</name><path>customer/account/</path><label>Account Dashboard</label></action>
+                <action method="addLink" translate="label" module="customer"><name>account_edit</name><path>customer/account/edit/</path><label>Account Information</label></action>
+                <action method="addLink" translate="label" module="customer"><name>address_book</name><path>customer/address/</path><label>Address Book</label></action>
+                <action method="addLink" translate="label" module="leilao" ><label>Cadastrar Animais</label><url helper="leilao/getUrlAddProduct"/><title>Cadastrar Animais</title><prepare/><urlParams/><position>10</position></action>
+                <action method="addLink" translate="label" module="leilao" ><label>Criar Leilão</label><url helper="leilao/getUrlAddEvento"/><title>Criar Leilão</title><prepare/><urlParams/><position>10</position></action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="leilao/evento" name="leilao_evento_criarevento_main" template="leilao/evento/criar-evento/main.phtml">
+                <block type="leilao/evento" name="leilao_evento_criarevento_product" as="leilao_evento_criarevento_product" template="leilao/evento/criar-evento/product.phtml"/>
+            </block>
+        </reference>
+    </leilao_evento_criarevento>
+    
+   <leilao_evento_listevento>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <block type="customer/account_navigation" name="customer_account_navigation" before="-" template="customer/account/navigation.phtml">
+                <action method="addLink" translate="label" module="customer"><name>account</name><path>customer/account/</path><label>Account Dashboard</label></action>
+                <action method="addLink" translate="label" module="customer"><name>account_edit</name><path>customer/account/edit/</path><label>Account Information</label></action>
+                <action method="addLink" translate="label" module="customer"><name>address_book</name><path>customer/address/</path><label>Address Book</label></action>
+                <action method="addLink" translate="label" module="leilao" ><label>Cadastrar Animais</label><url helper="leilao/getUrlAddProduct"/><title>Cadastrar Animais</title><prepare/><urlParams/><position>10</position></action>
+                <action method="addLink" translate="label" module="leilao" ><label>Criar Leilão</label><url helper="leilao/getUrlAddEvento"/><title>Criar Leilão</title><prepare/><urlParams/><position>10</position></action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="leilao/evento" name="leilao_evento_listevento" template="leilao/evento/list-evento.phtml"/>
+        </reference>
+    </leilao_evento_listevento>     
+</layout>

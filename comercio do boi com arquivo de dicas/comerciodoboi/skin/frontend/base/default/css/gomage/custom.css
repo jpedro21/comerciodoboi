@@ -1,0 +1,16 @@
+.form-list .tipo .radio { float:left; }
+.form-list .tipo label { margin-right:20px; }
+.form-list .country { display:none; }
+.form-list .street-address { width:417px; padding-right:22px; }
+.form-list .street-address .input-box { width:100%; }
+.form-list .street-address input.input-text { width:100%; }
+.form-list .number-address { width:90px; }
+.form-list .number-address .input-box { width:100%; }
+.form-list .number-address input.input-text { width:100%; }
+#load-end-billing,#load-end-shipping {font-size: smaller;margin-right:30px}
+.glc button.button span {height: auto !important}
+.sp-methods select.month, .sp-methods select.year {margin-right:10px !important }
+.glc .cvv-what-is-this {right:100px}
+#login-form , .simple_overlay {text-align:left !important} 
+#login-form .form-list .input-box {margin-left: 0 !important}
+#billing_email input,#shipping_email input {text-transform:lowercase}

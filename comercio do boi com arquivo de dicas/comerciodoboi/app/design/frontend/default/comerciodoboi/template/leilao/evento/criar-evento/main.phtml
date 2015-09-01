@@ -1,0 +1,11 @@
+<div class="cadastro-leilao">
+    <h2> Leilões criados</h2>
+    <form action="<?php echo $this->getUrlFormSaveEvento() ?>" id="form-validate" method="post">
+        <?php echo $this->getChildHtml('leilao_evento_criarevento_product') ?>
+    </form>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+ </script>

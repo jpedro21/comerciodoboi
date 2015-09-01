@@ -1,0 +1,91 @@
+<?php
+ /**
+ * GoMage LightCheckout Extension
+ *
+ * @category     Extension
+ * @copyright    Copyright (c) 2010-2012 GoMage (http://www.gomage.com)
+ * @author       GoMage
+ * @license      http://www.gomage.com/license-agreement/  Single domain license
+ * @terms of use http://www.gomage.com/terms-of-use
+ * @version      Release: 3.2
+ * @since        Class available since Release 1.0
+ */	
+	
+	$input_name 	= $this->getInputName();
+	$input_id		= $this->getInputId();
+	$input_class	= $this->getInputClass();
+	$label_class	= $this->getLabelClass();
+	
+	$required		= $this->getIsRequired();
+	$validation_type = $this->getValidationType();
+	$label			= $this->getLabel();
+	
+	
+	$input_class .= ' input-text ';
+        
+        $input_value = $this->getValue();
+        $cep_session = Mage::getSingleton('core/session')->getCepSession();
+	if($cep_session != '') {
+            $input_value = $cep_session;
+            Mage::getSingleton('core/session')->unsCepSession();
+        }
+	
+	if($required){
+		
+		if(!$validation_type){
+			$input_class .= 'required-entry absolute-advice'.' ';
+		}else{
+			$input_class .= $validation_type.' ';
+		}
+		
+		$label_class .= ' required ';
+		
+	}
+	
+?>
+<? if( $input_id == 'billing_postcode' ) { ?>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var id = <?php echo $input_id;?>;
+        if(jQuery(id).val() != '') {
+            buscar_end('billing');
+        }
+    });
+</script>
+
+<label for="<?php echo $input_id;?>" class="<?php echo $label_class;?>"><?php if($required):?><em>*</em><?php endif;?><?php echo $this->__($label); ?> </label>
+<div id="load-end-billing" class="a-right"><a href="http://www.buscacep.correios.com.br/servicos/dnec/menuAction.do?Metodo=menuLogradouro" target="_blank">N&atilde;o sabe o cep?</a></div>
+<div class="input-box <?php echo $input_id;?>">
+    <input type="text" name="<?php echo $input_name;?>" id="<?php echo $input_id;?>" value="<?php echo $this->htmlEscape($input_value) ?>" title="<?php echo $this->__($label); ?>" maxlength="8" onkeyup="mascara(this,numeros)" onfocus="mascara(this,numeros)" class="<?php echo $input_class;?>" onblur="buscar_end('billing');"  />
+</div>
+
+<? }elseif($input_id == 'shipping_postcode' ){ ?>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var id = <?php echo $input_id;?>;
+        if(jQuery(id).val() != '') {
+            buscar_end('shipping');
+        }
+    });
+</script>
+
+<label for="<?php echo $input_id;?>" class="<?php echo $label_class;?>"><?php if($required):?><em>*</em><?php endif;?><?php echo $this->__($label); ?> </label>
+<div id="load-end-shipping" class="a-right"><a href="http://www.buscacep.correios.com.br/servicos/dnec/menuAction.do?Metodo=menuLogradouro" target="_blank">N&atilde;o sabe o cep?</a></div>
+<div class="input-box <?php echo $input_id;?>">
+    <input type="text" name="<?php echo $input_name;?>" id="<?php echo $input_id;?>" value="<?php echo $this->htmlEscape($input_value) ?>" title="<?php echo $this->__($label); ?>" maxlength="8" onkeyup="mascara(this,numeros)" onfocus="mascara(this,numeros)" class="<?php echo $input_class;?>" onblur="buscar_end('shipping');"  />
+</div>
+<? }else{ ?>
+
+<label for="<?php echo $input_id;?>" class="<?php echo $label_class;?>"><?php if($required):?><em>*</em><?php endif;?><?php echo $this->__($label); ?></label>
+<div class="input-box <?php echo $input_id;?>">
+    <input type="text" name="<?php echo $input_name;?>" id="<?php echo $input_id;?>" value="<?php echo $this->htmlEscape($input_value) ?>" title="<?php echo $this->__($label); ?>" class="<?php echo $input_class;?>" />
+</div>
+
+<? } ?>
+
+
+    
+    
+  

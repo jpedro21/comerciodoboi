@@ -1,0 +1,62 @@
+<?php
+/**
+ * Octagono Ecommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.octagonoecommerce.com.br/eula-licenca-usuario-final.html
+ *
+ *
+ * @category   Cliente
+ * @package    Octagono_Cliente
+ * @copyright  Copyright (c) 2009-2011 - Octagono Ecommerce - www.octagonoecommerce.com.br
+ * @license    http://www.octagonoecommerce.com.br/eula-licenca-usuario-final.html
+ */
+?>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery("#c").click(function() {
+           jQuery("#contrato-customer").show();
+           jQuery("#contrato-leiloeiro").hide();
+        });
+        jQuery("#cv").click(function() {
+           jQuery("#contrato-leiloeiro").show();
+           jQuery("#contrato-customer").hide();
+        });
+    });
+</script>
+<div class="fieldset tipo">
+    <h2 class="legend">Contrato</h2>
+    <ul class="form-list">
+        <li class="fields">
+            <div class="field contrato">
+                <div class="input-box">
+                    <div id="contrato-customer">
+                        <label>Contrato para quem deseja comprar:</label>
+                        <textarea rows="4" cols="100">
+                            <?php echo Mage::getModel('core/variable')->loadByCode('contrato_customer')->getValue('text') ?>
+                        </textarea>
+                    </div>
+                    <div id="contrato-leiloeiro" style="display:none">
+                        <label>Contrato para quem deseja comprar e vender animais:</label>
+                        <textarea rows="4" cols="100">
+                            <?php echo Mage::getModel('core/variable')->loadByCode('contrato_leiloeiro')->getValue('text') ?>
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="fields">
+            <div class="field contrato-checkbox">
+                <div class="input-box">
+                    <input type="checkbox" name="contrato" value="1" id="contrato" class="input-text required-entry"/>
+                </div>
+            </div>
+            <label for="is_subscribed" class="required" for="contrato">Aceita os termos citados acima?</label>
+        </li>
+    </ul>
+</div>
+

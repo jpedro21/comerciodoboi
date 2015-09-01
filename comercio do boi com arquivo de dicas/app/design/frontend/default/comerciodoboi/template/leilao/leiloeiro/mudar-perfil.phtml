@@ -1,0 +1,37 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<form action="<?php echo $this->getUrlFormMudarPerfil() ?>" method="post" id="form-validate">
+    <div class="fieldset tipo">
+        <h2 class="legend">Contrato</h2>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field contrato">
+                    <div class="input-box">
+                        <div id="contrato-leiloeiro">
+                            <label>Contrato para quem deseja comprar e vender animais:</label>
+                            <textarea rows="4" cols="100">
+                                <?php echo Mage::getModel('core/variable')->loadByCode('contrato_leiloeiro')->getValue('text') ?>
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="fields">
+                <div class="field contrato-checkbox">
+                    <div class="input-box">
+                        <input type="checkbox" name="contrato" value="1" id="contrato" class="input-text required-entry"/>
+                    </div>
+                </div>
+                <label for="is_subscribed" class="required" for="contrato">Aceita os termos citados acima?</label>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+    </div>
+</form>
+
+ <script type="text/javascript">
+    //<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+ </script>

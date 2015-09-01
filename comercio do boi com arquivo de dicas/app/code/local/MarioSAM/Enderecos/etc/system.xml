@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<sections>
+		<shipping>
+			<groups>
+				<autocomplete translate="label">
+					<label>Auto-Complete Shipping - by Mario SAM</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<habilitar translate="label">
+							<label>Turn On Module</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>10</sort_order>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</habilitar>
+						<base_url translate="label">
+							<label>Base Consult (URL)</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>20</sort_order>
+							<source_model>enderecos/opcoes_servidores</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>You should use 4 lines in field shipping the configuracion of the name and client shipping.</comment>
+						</base_url>
+						<exibir_pais translate="label">
+							<label>Show Country</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>30</sort_order>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</exibir_pais>
+					</fields>
+				</autocomplete>
+			</groups>
+		</shipping>
+	</sections>
+</config>

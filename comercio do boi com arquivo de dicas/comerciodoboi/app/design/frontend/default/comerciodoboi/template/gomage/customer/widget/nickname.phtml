@@ -1,0 +1,66 @@
+<?php
+/**
+ * Octagono Ecommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.octagonoecommerce.com.br/eula-licenca-usuario-final.html
+ *
+ *
+ * @category   Cliente
+ * @package    Octagono_Cliente
+ * @copyright  Copyright (c) 2009-2011 - Octagono Ecommerce - www.octagonoecommerce.com.br
+ * @license    http://www.octagonoecommerce.com.br/eula-licenca-usuario-final.html
+ */
+?>
+<script type="text/javascript">
+//<![CDATA[
+    function buscarNickname() {
+        var urlAjax = location.href;
+        var validarUrl = /^https:\/\//;
+
+        if (urlAjax.match(validarUrl)) {
+            urlAjax = '<?php echo Mage::getBaseUrl("link", true) . "leilao/customer/nickname" ?>';
+        } else {
+            urlAjax = '<?php echo $this->getUrl("leilao/customer/nickname") ?>';
+        }
+
+        new Ajax.Request(urlAjax, {method: 'POST',
+            parameters: 'nickname=' + $('nickname').value,
+            evalScripts: true,
+            onLoading: function (transport) {
+                $('load-nickname').innerHTML = '<img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif'); ?>" /> <span style="color: #888;"><?php echo $this->__('Loading...') ?></span>';
+            },
+            
+            onSuccess: function (transport) {
+                $('load-nickname').innerHTML = '';
+                jQuery(".advice-nickname").remove();
+                
+                if(parseInt(transport.responseText) >= 1) {
+                    jQuery("#nickname").addClass("validation-failed");
+                    jQuery("#nickname").after("<div class='advice-nickname validation-advice'>Este apelido já esta sendo usado. Por favor escolha outro.</div>");
+                } else if(parseInt(transport.responseText) <= 0) {
+                    jQuery("#nickname").removeClass("validation-failed");
+                }
+            }
+        });
+    }
+
+//]]>
+</script>
+
+
+<div class="field nickname">
+    <label for="<?php echo $this->getFieldId('nickname') ?>" class="required"><em>*</em><?php echo $this->__('Apelido') ?></label>
+    <div class="input-box">
+        <input type="text" id="<?php echo $this->getFieldId('nickname') ?>" name="<?php echo $this->getFieldName('nickname') ?>" value="<?php echo $this->escapeHtml($this->getNickname()) ?>" title="<?php echo $this->__('Apelido') ?>" onblur="buscarNickname()" class="input-text required-entry" />
+    </div>
+    <div class="field">
+        <label>&nbsp;</label>
+        <div id="load-nickname" class="input-box"></div>
+    </div>
+</div>
+

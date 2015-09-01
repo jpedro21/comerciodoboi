@@ -1,0 +1,76 @@
+<?php
+    $id_products = $this->getProductsId();
+    $_helper = $this->helper('catalog/output');
+?>
+<div class="product-field">
+    <span class="title">Escolha um prodcuto que deseja criar um evento.</span>
+
+    <?php if(!$id_products->count()): ?>
+    <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+    <?php else: ?>
+    <div class="category-products">
+        <?php // Grid Mode ?>
+        <?php $_collectionSize = $id_products->count() ?>
+        <?php $_columnCount = 3 ?>
+        <?php $i=0; foreach ($id_products as $id): ?>
+            <?php $_product = $this->loadProduct($id->getData('id_product')) ?>
+            <?php if ($i++%$_columnCount==0): ?>
+                <ul class="products-grid">
+                <?php endif ?>
+                    <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                        <input type="radio" name="selected_product" value="<?php echo $_product->getId() ?>" />
+                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(200); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+                        <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+                        <?php if($_product->getRatingSummary()): ?>
+                        <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                        <?php endif; ?>
+                        <?php echo $this->getPriceHtml($_product, true) ?>
+                    </li>
+                <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+                </ul>
+            <?php endif ?>
+        <?php endforeach ?>
+        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+    </div>
+    <?php endif; ?>
+</div>
+<div class="field title-evento">
+    <label class="required" for="name-evento">Título do Leilão</label>
+    <div class="input-box">
+        <input id="title-evento" class="input-text required-entry" type="text" maxlength="255" title="Nome do Leilão" value="" name="evento_title" />
+    </div>
+</div>
+<div class="field data-inicio">
+    <label class="required" for="data-inicio">Data para início do leilão</label>
+    <div class="input-box">
+        <input id="data-inicio" class="input-text required-entry" type="text" maxlength="255" title="Data Início" value="" name="data_inicio" />
+    </div>
+    <span class="help-field">Informe a data no seguinte formato Ex: 17/12/2015</span>
+</div>
+<div class="field hora-inicio">
+    <label class="required" for="hora-inicio">Horário para início de leilão</label>
+    <div class="input-box">
+        <input id="hora-inicio" class="input-text required-entry" type="text" maxlength="255" title="Horário início de leilao" value="" name="hora_inicio" />
+    </div>
+    <span class="help-field">Informe o horário no seguinte formato Ex: 13:30</span>
+</div>
+<div class="field data-fim">
+    <label class="required" for="data-inicio">Data para fim do leilão</label>
+    <div class="input-box">
+        <input id="data-fim" class="input-text required-entry" type="text" maxlength="255" title="Data final" value="" name="data_fim" />
+    </div>
+</div>
+<div class="field hora-inicio">
+    <label class="required" for="hora-inicio">Horário para fim de leilão</label>
+    <div class="input-box">
+        <input id="hora-fim" class="input-text required-entry" type="text" maxlength="255" title="Horário para fim de leilao" value="" name="hora_fim" />
+    </div>
+    <span class="help-field">Informe o horário no seguinte formato Ex: 09:30</span>
+</div>
+<div class="button-submit">
+    <button class="button" title="Enviar" type="submit">
+        <span>
+        <span>Enviar</span>
+        </span>
+    </button>
+</div>

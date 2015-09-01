@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <JorgePedro_Leilao>
+            <version>0.1.1</version>
+        </JorgePedro_Leilao>
+    </modules>
+    
+    <frontend>
+        <routers>
+            <leilao>
+                <use>standard</use>
+                <args>
+                    <module>JorgePedro_Leilao</module>
+                    <frontName>leilao</frontName>
+                </args>
+            </leilao>
+        </routers>
+        <layout>
+            <updates module="JorgePedro_Leilao">
+                <leilao>
+                    <file>jorgepedro-leilao.xml</file>
+                </leilao>
+            </updates>
+        </layout>
+    </frontend>
+    
+    <admin>
+        <routers>
+            <leilao>
+                <use>admin</use>
+                <args>
+                    <module>JorgePedro_Leilao</module>
+                    <frontName>leilao</frontName>
+                </args>
+            </leilao>
+        </routers>
+    </admin>
+    
+    <adminhtml>    
+       <menu>
+            <leilao translate="title" module="leilao">
+                <title>Leilão</title>
+                <sort_order>90</sort_order>       
+                <children>
+                    <evento module="leilao">
+                        <title>Gerenciar Eventos</title>
+                        <sort_order>0</sort_order>
+                        <action>leilao/adminhtml_leilao</action>
+                    </evento>
+                    <leiloeiro module="leilao">
+                        <title>Gerenciar Leiloeiros</title>
+                        <sort_order>1</sort_order>
+                        <action>leilao/adminhtml_leilao</action>
+                    </leiloeiro>
+                </children>
+            </leilao>   
+        </menu>   
+    </adminhtml>    
+    
+    <global>
+        <helpers>
+            <leilao>
+                <class>JorgePedro_Leilao_Helper</class>
+            </leilao>
+        </helpers>
+        <blocks>
+            <leilao>
+                <class>JorgePedro_Leilao_Block</class>
+            </leilao>
+        </blocks>
+        <models>
+            <leilao>
+                <class>JorgePedro_Leilao_Model</class>
+                <resourceModel>leilao_mysql4</resourceModel>
+            </leilao>
+            <leilao_mysql4>
+                <class>JorgePedro_Leilao_Model_Mysql4</class>
+                <entities>
+                    <jorgepedro_leilao_lance>
+                        <table>jorgepedro_leilao_lance</table>
+                    </jorgepedro_leilao_lance>
+                    <jorgepedro_leilao_leiloeiro>
+                        <table>jorgepedro_leilao_leiloeiro</table>
+                    </jorgepedro_leilao_leiloeiro>
+                    <jorgepedro_leilao_evento>
+                        <table>jorgepedro_leilao_evento</table>
+                    </jorgepedro_leilao_evento>
+                    <jorgepedro_leilao_lance_evento>
+                        <table>jorgepedro_leilao_lance_evento</table>
+                    </jorgepedro_leilao_lance_evento>
+                    <jorgepedro_leilao_leiloeiro_product>
+                        <table>jorgepedro_leilao_leiloeiro_product</table>
+                    </jorgepedro_leilao_leiloeiro_product>
+                </entities>
+            </leilao_mysql4>
+        </models>
+        <resources>
+            <leilao_setup>
+                <setup>
+                    <module>JorgePedro_Leilao</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </leilao_setup>
+            <leilao_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </leilao_write>
+            <leilao_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </leilao_read>
+        </resources>
+        
+         <events>
+            <customer_register_success>
+                <observers>
+                    <jorgepedro_leilao_crete_user>
+                        <type>singleton</type>
+                        <class>JorgePedro_Leilao_Model_Observer</class>
+                        <method>createUser</method>
+                    </jorgepedro_leilao_crete_user>
+                </observers>
+            </customer_register_success>
+         </events>
+        
+    </global>
+</config>

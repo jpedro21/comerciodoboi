@@ -1,0 +1,77 @@
+<?php $question  = $this->getQuestion(); ?>
+
+<div class="wrapper-perguntas">
+    
+    <?php if(!empty($question)): ?>
+        <?php
+            $attribute = $this->getAttribute($question->getData('id_attribute'));
+            $options   = $this->getOptionsAttribute($attribute->getData('attribute_code'));    
+        ?>
+        <div class="perguntas-title">
+            <span><?php echo $question->getTitle() ?></span>
+        </div>
+        <div class="perguntas-images">
+            <?php if($question->getData('url_img_1') != ''): ?>
+                <img src="<?php echo Mage::getBaseUrl('media') . 'Perguntas/' . $question->getData('url_img_1') ?>" tile="<?php echo $question->getTitle() ?>"/>
+            <?php endif; ?>
+
+            <?php if($question->getData('url_img_2') != ''): ?>
+                <img src="<?php echo Mage::getBaseUrl('media') . 'Perguntas/' . $question->getData('url_img_2') ?>" tile="<?php echo $question->getTitle() ?>"/>
+            <?php endif; ?>
+
+            <?php if($question->getData('url_img_3') != ''): ?>
+                <img src="<?php echo Mage::getBaseUrl('media') . 'Perguntas/' . $question->getData('url_img_3') ?>" tile="<?php echo $question->getTitle() ?>"/>
+            <?php endif; ?>
+        </div>
+        <div class="perguntas-options">
+            <form id="form-validate" enctype="multipart/form-data" method="post" 
+                  action="<?php echo Mage::getBaseUrl() . 'perguntas/index/start'; ?>">
+
+
+                <?php foreach($options as $option): ?>
+                    <div class="pergunta-field">
+                        <label><?php echo $option['label'] ?></label>
+                        <input type="radio" name="attribute_option[]" value="<?php echo $option['value'] ?>" />
+                    </div>
+                <?php endforeach; ?>
+
+                <input style="display: none" type="text" name="attribute_code" value="<?php echo $attribute->getAttributeCode() ?>"/>
+
+                <?php if($this->getPrevQuestion($question->getId()) != false): ?>
+                    <div class="perguntas-button-prev">
+                        <input type="text" style="display: none" id="prev" name="prev" value="1" disabled />
+                        <input type="submit" onclick="document.getElementById('prev').disabled = false;" value="Voltar" />
+                    </div>
+                <?php endif; ?>
+
+                <?php if($this->getNextQuestion($question->getId()) != false): ?>
+                    <div class="perguntas-button-next">
+                        <input type="text" style="display: none" id="next" name="next" value="1" disabled />
+                        <input type="submit" onclick="document.getElementById('next').disabled = false;" value="Avançar" />
+                    </div>
+                <?php endif; ?>
+
+                <?php if(!$this->getNextQuestion($question->getId())): ?>
+                    <div class="perguntas-button-result">
+                        <input type="text" style="display: none" id="result" name="result" value="1" disabled />
+                        <input id="result-submit" type="submit" onclick="document.getElementById('result').disabled = false;" value="Ver resultado" />
+                    </div>
+                <?php endif; ?>
+            </form>
+        </div>
+    <?php else: ?>
+        <?php echo 'Não existem perguntas a serem exibidas'; ?>
+    <?php endif; ?>
+    
+    <?php if($this->getNextQuestion($question->getId()) == false): ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery("#result-submit").click(function() {
+                    jQuery("#form-validate").attr("action", "<?php echo Mage::getBaseUrl() . 'perguntas/index/result'?>");
+                });
+            });
+        </script>
+    <?php endif; ?>
+    
+</div>
+
